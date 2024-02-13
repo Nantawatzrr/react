@@ -16,17 +16,15 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import Home from "../components/Home";
-import DataEmployee from '../components/DataEmployee'
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
 import LogoutIcon from '@mui/icons-material/Logout';
 import DataSaverOffOutlinedIcon from '@mui/icons-material/DataSaverOffOutlined';
-import logo from '../icons/logo.png'
+import logo from '../../icons/logo.png'
 import swal from "sweetalert";
 import Groups2SharpIcon from '@mui/icons-material/Groups2Sharp';
-import DataTableadmin from '../components/DataTableadmin'
-// import InboxIcon from '@mui/icons-material/MoveToInbox';
-// import MailIcon from '@mui/icons-material/Mail';
+import Home from '../../components/branchAdmin/Home'
+import Datapatient from '../../components/branchAdmin/Datapatient'
+import DataEmp from '../../components/branchAdmin/DataEmp'
 
 const drawerWidth = 240;
 
@@ -207,7 +205,7 @@ export default function MiniDrawer() {
           <ListItem
             disablePadding
             sx={{ display: "block" }}
-            onClick={() => setMenudata("Datatable")}
+            onClick={() => setMenudata("Datapatient")}
           >
             <ListItemButton
               sx={{
@@ -282,9 +280,9 @@ export default function MiniDrawer() {
         <Divider />
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        {menudata == "Home" && <Home />}
-        {menudata == "Datatable" && <DataTableadmin />}
-        {menudata == "Empdata" && <DataEmployee />}
+      {menudata == "Home" && <Home />}
+      {menudata == "Datapatient" && <Datapatient />}
+      {menudata == "Empdata" && <DataEmp />}
       </Box>
     </Box>
     </>

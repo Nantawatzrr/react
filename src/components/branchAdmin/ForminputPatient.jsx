@@ -3,8 +3,7 @@ import { TextField, Container, Stack, Box } from "@mui/material";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import Autocomplete from "@mui/material/Autocomplete";
-
-const options = ["SuperAdmin 1", "BranchAdmin" , "Branch Staff" , "Doctor" , "Nurse"];
+const mr = ["นาย", "นาง", "นางสาว"];
 const Forminput = () => {
   // const {fname,lname,age,weight,height,sbp,dpb,pulse,editId,setTitle} = props;
   function handleSubmit(event) {
@@ -19,6 +18,16 @@ const Forminput = () => {
           direction="row"
           sx={{ marginBottom: 4, marginTop: 4 }}
         >
+          <TextField
+            type="number"
+            variant="outlined"
+            color="secondary"
+            label="รหัสผู้ป่วย"
+            // value={fname}
+            onChange={(e) => setTitle(e.target.value)}
+            fullWidth
+            required
+          />
           <TextField
             type="text"
             variant="outlined"
@@ -44,15 +53,11 @@ const Forminput = () => {
           direction="row"
           sx={{ marginBottom: 4, marginTop: 4 }}
         >
-          <TextField
-            type="number"
-            variant="outlined"
-            color="secondary"
-            label="อายุ"
-            // value={age}
+          <Autocomplete
+            id="controllable-states-demo"
+            options={mr}
             fullWidth
-            required
-            sx={{ mb: 4 }}
+            renderInput={(params) => <TextField {...params} label="คำนำหน้า" />}
           />
           <TextField
             type="number"
@@ -74,21 +79,77 @@ const Forminput = () => {
             fullWidth
             sx={{ mb: 4 }}
           />
-          {/* <TextField
-            type="text"
+        </Stack>
+        <Stack
+          spacing={2}
+          direction="row"
+          sx={{ marginBottom: 4, marginTop: 4 }}
+        >
+          <TextField
+            type="number"
             variant="outlined"
             color="secondary"
-            label="ตำเเหน่ง"
+            label="อายุ"
             // value={sbp}
             required
             fullWidth
             sx={{ mb: 4 }}
-          /> */}
-          <Autocomplete
-            id="controllable-states-demo"
-            options={options}
+          />
+          <TextField
+            type="number"
+            variant="outlined"
+            color="secondary"
+            label="หมายเลขบัตรประชาชน"
+            // value={dpb}
+            required
             fullWidth
-            renderInput={(params) => <TextField {...params}  label="ตำเเหน่ง" />}
+            sx={{ mb: 4 }}
+          />
+          <TextField
+            type="number"
+            variant="outlined"
+            color="secondary"
+            label="เบอร์โทร"
+            // value={pulse}
+            required
+            fullWidth
+            sx={{ mb: 4 }}
+          />
+        </Stack>
+        <Stack
+          spacing={2}
+          direction="row"
+          sx={{ marginBottom: 4, marginTop: 4 }}
+        >
+          <TextField
+            type="number"
+            variant="outlined"
+            color="secondary"
+            label="SBP"
+            // value={sbp}
+            required
+            fullWidth
+            sx={{ mb: 4 }}
+          />
+          <TextField
+            type="number"
+            variant="outlined"
+            color="secondary"
+            label="DPB"
+            // value={dpb}
+            required
+            fullWidth
+            sx={{ mb: 4 }}
+          />
+          <TextField
+            type="number"
+            variant="outlined"
+            color="secondary"
+            label="Pulse"
+            // value={pulse}
+            required
+            fullWidth
+            sx={{ mb: 4 }}
           />
         </Stack>
 

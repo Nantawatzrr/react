@@ -2,7 +2,6 @@ import { Card, Box, Typography, Grid } from "@mui/material";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import Chart from "./Chart";
 
-
 const DashboardCard = () => {
   const userData = [
     { title: "จำนวนผู้ใช้งาน", value: 200, icon: <HomeOutlinedIcon /> },
@@ -12,15 +11,10 @@ const DashboardCard = () => {
     // เพิ่มข้อมูลอื่น ๆ ตามต้องการ
   ];
   return (
-    <>
-    <Chart/>
-      <Grid
-        container
-        sx={{ display: "flex", justifyContent: "center" , marginTop:1}}
-        spacing={2} // เพิ่มระยะห่างระหว่างการ์ด
-      >
-        {userData.map((data, index) => (
-          <Grid item xs={12} sm={6} md={3} key={index}>
+    <Box sx={{ display: "flex" , marginTop:25 }}>
+      <Grid container spacing={2} columns={16}>
+        <Grid item xs={8}>
+          {userData.map((data, index) => (
             <Card variant="outlined" sx={cardStyle}>
               <Box
                 sx={{
@@ -49,10 +43,13 @@ const DashboardCard = () => {
                 <Typography sx={{ fontSize: 25 }}>{data.value}</Typography>
               </Box>
             </Card>
-          </Grid>
-        ))}
+          ))}
+        </Grid>
+        <Grid item xs={8}>
+          <Chart />
+        </Grid>
       </Grid>
-    </>
+    </Box>
   );
 };
 

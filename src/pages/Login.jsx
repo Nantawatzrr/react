@@ -53,7 +53,7 @@ export default function SignIn() {
             buttons: false,
           }).then(() => {
             localStorage.setItem("token", data.token);
-            window.location = "/Sidenav";
+            window.location = "/superAdmin";
           });
         } else {
           swal({

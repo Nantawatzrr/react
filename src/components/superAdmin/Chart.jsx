@@ -2,11 +2,6 @@ import { Box, Typography, Grid } from "@mui/material";
 import {
   RadialBarChart,
   RadialBar,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
   Tooltip,
   Legend,
   ResponsiveContainer,
@@ -63,13 +58,10 @@ const Chart = () => {
         <Grid item sx={{ width: "100%" }}>
           {/* แสดง Component กราฟ */}
           <Box sx={{ display: "flex", justifyContent: "center" }}>
-            <Typography sx={{ fontSize: 25, mt: 9 }}>ข้อมูลทั้งหมด</Typography>
+            <Typography sx={{ fontSize: 25, mt: 2 }}>ข้อมูลทั้งหมด</Typography>
           </Box>
           <ResponsiveContainer
-            height={400}
-            style={{
-              marginTop: 20,
-            }}
+            height={500}
           >
             <RadialBarChart
               width={730}

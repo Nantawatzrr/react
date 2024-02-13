@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { TextField, Container, Stack, Box } from "@mui/material";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
-
+import Autocomplete from "@mui/material/Autocomplete";
+const mr = ["นาย", "นาง", "นางสาว"];
 const Forminput = () => {
-    // const {fname,lname,age,weight,height,sbp,dpb,pulse,editId,setTitle} = props;
+  // const {fname,lname,age,weight,height,sbp,dpb,pulse,editId,setTitle} = props;
   function handleSubmit(event) {
     event.preventDefault();
   }
@@ -17,6 +18,16 @@ const Forminput = () => {
           direction="row"
           sx={{ marginBottom: 4, marginTop: 4 }}
         >
+          <TextField
+            type="number"
+            variant="outlined"
+            color="secondary"
+            label="รหัสผู้ป่วย"
+            // value={fname}
+            onChange={(e) => setTitle(e.target.value)}
+            fullWidth
+            required
+          />
           <TextField
             type="text"
             variant="outlined"
@@ -42,15 +53,11 @@ const Forminput = () => {
           direction="row"
           sx={{ marginBottom: 4, marginTop: 4 }}
         >
-          <TextField
-            type="number"
-            variant="outlined"
-            color="secondary"
-            label="อายุ"
-            // value={age}
+          <Autocomplete
+            id="controllable-states-demo"
+            options={mr}
             fullWidth
-            required
-            sx={{ mb: 4 }}
+            renderInput={(params) => <TextField {...params} label="คำนำหน้า" />}
           />
           <TextField
             type="number"
@@ -78,7 +85,43 @@ const Forminput = () => {
           direction="row"
           sx={{ marginBottom: 4, marginTop: 4 }}
         >
-        <TextField
+          <TextField
+            type="number"
+            variant="outlined"
+            color="secondary"
+            label="อายุ"
+            // value={sbp}
+            required
+            fullWidth
+            sx={{ mb: 4 }}
+          />
+          <TextField
+            type="number"
+            variant="outlined"
+            color="secondary"
+            label="หมายเลขบัตรประชาชน"
+            // value={dpb}
+            required
+            fullWidth
+            sx={{ mb: 4 }}
+          />
+          <TextField
+            type="number"
+            variant="outlined"
+            color="secondary"
+            label="เบอร์โทร"
+            // value={pulse}
+            required
+            fullWidth
+            sx={{ mb: 4 }}
+          />
+        </Stack>
+        <Stack
+          spacing={2}
+          direction="row"
+          sx={{ marginBottom: 4, marginTop: 4 }}
+        >
+          <TextField
             type="number"
             variant="outlined"
             color="secondary"
@@ -88,7 +131,7 @@ const Forminput = () => {
             fullWidth
             sx={{ mb: 4 }}
           />
-        <TextField
+          <TextField
             type="number"
             variant="outlined"
             color="secondary"
@@ -98,11 +141,11 @@ const Forminput = () => {
             fullWidth
             sx={{ mb: 4 }}
           />
-        <TextField
+          <TextField
             type="number"
             variant="outlined"
             color="secondary"
-            label="อัตราการเต้นของหัวใจ"
+            label="Pulse"
             // value={pulse}
             required
             fullWidth
@@ -114,9 +157,9 @@ const Forminput = () => {
           type="submit"
           variant="contained"
           color="success"
-          sx={{ backgroundColor: "#00CD66" , marginBottom:5 }}
+          sx={{ backgroundColor: "#00CD66", marginBottom: 5 }}
         >
-            เพิ่ม
+          เพิ่ม
           {/* {editId ? "แก้ไข" : "เพิ่ม"} */}
         </Button>
       </form>
