@@ -4,11 +4,20 @@ import TextField from '@mui/material/TextField';
 import { Container } from '@mui/material';
 import Button from '@mui/material/Button';
 
+const handleDelete = (id) => {
+  event.preventDefault();
+  swal({
+    title: "บันทึกเสร็จสิ้น",
+    text: "ขอบคุณ",
+    icon: "success",
+    timer: 890,
+    buttons: false,
+  });
+};
 export default function AddressForm() {
   return (
     <React.Fragment>
-      <Container>
-        <form action="">
+      <Container component="form" onSubmit={handleDelete}>
           <Grid container spacing={3}>
         <Grid item xs={12} sm={4}>
           <TextField
@@ -38,7 +47,6 @@ export default function AddressForm() {
           เพิ่ม
           {/* {editId ? "แก้ไข" : "เพิ่ม"} */}
         </Button>
-        </form>
       
         </Container>
 

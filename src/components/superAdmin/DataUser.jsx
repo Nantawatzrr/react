@@ -1,8 +1,8 @@
-import { DataGrid, GridToolbarQuickFilter  } from "@mui/x-data-grid";
+import { DataGrid, GridToolbarQuickFilter } from "@mui/x-data-grid";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import FormDataUser from './FormDataUser'
+import FormDataUser from "./FormDataUser";
 
 const rows = [
   {
@@ -117,30 +117,47 @@ const handleEdit = (id) => {
 };
 
 const handleDelete = (id) => {
-  // เขียนโค้ดสำหรับการลบข้อมูลด้วย ID ที่ได้รับ
-  console.log("Delete clicked for row with ID:", id);
+  swal({
+    title: "ต้องการลบ?",
+    text: "ถ้าต้องการลบกด OK  ถ้าไม่ต้องการกด Cancle",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  }).then((willDelete) => {
+    if (willDelete) {
+      swal("ลบข้อมูลเสร็จสิ้น", {
+        icon: "success",
+      });
+    } else {
+      swal("ข้อมูลยังไม่ถูกลบ", {
+        icon: "success",
+      });
+    }
+  });
 };
 
 const DataStudents = () => {
   return (
-
     <Box>
       <Container>
-        <Typography  sx={{
+        <Typography
+          sx={{
             textAlign: "center",
             marginBottom: 3,
             marginTop: 10,
             fontSize: 25,
-          }}>
-            ผู้ใช้งาน
+          }}
+        >
+          ผู้ใช้งาน
         </Typography>
-        <DataGrid rows={rowsWithIndex} columns={columns} slots={{ toolbar: GridToolbarQuickFilter }}/>
-        <FormDataUser/>
+        <DataGrid
+          rows={rowsWithIndex}
+          columns={columns}
+          slots={{ toolbar: GridToolbarQuickFilter }}
+        />
+        <FormDataUser />
       </Container>
     </Box>
-
-
-
   );
 };
 

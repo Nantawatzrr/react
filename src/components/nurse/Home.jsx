@@ -1,4 +1,4 @@
-import { Card, Box, Typography, Grid } from "@mui/material";
+import {  Box, Grid } from "@mui/material";
 import Chart from "./Chart";
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import DataSaverOffOutlinedIcon from "@mui/icons-material/DataSaverOffOutlined";
@@ -15,38 +15,6 @@ const DashboardCard = () => {
   return (
     <Box sx={{ display: "flex" , marginTop:18 }}>
       <Grid container >
-        {/* <Grid item xs={8}>
-          {userData.map((data, index) => (
-            <Card variant="outlined" sx={cardStyle}>
-              <Box
-                sx={{
-                  borderRadius: "50%",
-                  background: "#F08383",
-                  border: 0,
-                  width: "3rem",
-                  height: "3rem",
-                }}
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    marginTop: 1.5,
-                  }}
-                >
-                  {data.icon}
-                </Box>
-              </Box>
-              <Box sx={{ padding: 0, margin: 0 }}>
-                <Typography sx={{ fontSize: 14 }} color="text.secondary">
-                  {data.title}
-                </Typography>
-                <Typography sx={{ fontSize: 25 }}>{data.value}</Typography>
-              </Box>
-            </Card>
-          ))}
-        </Grid> */}
         <Grid item xs={12}>
           <Chart />
         </Grid>

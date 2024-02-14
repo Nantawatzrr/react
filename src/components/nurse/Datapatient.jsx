@@ -1,9 +1,8 @@
-import { DataGrid, GridToolbarQuickFilter   } from "@mui/x-data-grid";
+import { DataGrid, GridToolbarQuickFilter } from "@mui/x-data-grid";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import ForminputPatient from './ForminputPatient'
-
+import ForminputPatient from "./ForminputPatient";
 
 const rows = [
   {
@@ -14,11 +13,11 @@ const rows = [
     name: "กฤษณชัย",
     surname: "อุบลทิพย์",
     age: 59,
-    weight:64,
-    height:176,
-    qtySbp:150,
-    qtyDpb:95,
-    pulse:84,
+    weight: 64,
+    height: 176,
+    qtySbp: 150,
+    qtyDpb: 95,
+    pulse: 84,
     tel: "0987654332",
   },
   {
@@ -29,11 +28,11 @@ const rows = [
     name: "นันทวัฒน์",
     surname: "มาศวิเศษ",
     age: 60,
-    weight:55,
-    height:174,
-    qtySbp:151, 
-    qtyDpb:85,
-    pulse:79,
+    weight: 55,
+    height: 174,
+    qtySbp: 151,
+    qtyDpb: 85,
+    pulse: 79,
     tel: "0982079678",
   },
   {
@@ -44,11 +43,11 @@ const rows = [
     name: "วิทยา",
     surname: "วิทยา",
     age: 72,
-    weight:71,
-    height:162,
-    qtySbp:110,
-    qtyDpb:76,
-    pulse:75,
+    weight: 71,
+    height: 162,
+    qtySbp: 110,
+    qtyDpb: 76,
+    pulse: 75,
     tel: "0633368153",
   },
   {
@@ -59,11 +58,11 @@ const rows = [
     name: "สุภาพร",
     surname: "สุภาพร",
     age: 75,
-    weight:68,
-    height:168,
-    qtySbp:125, 
-    qtyDpb:78,
-    pulse:86,
+    weight: 68,
+    height: 168,
+    qtySbp: 125,
+    qtyDpb: 78,
+    pulse: 86,
     tel: "0891685718",
   },
   {
@@ -74,11 +73,11 @@ const rows = [
     name: "ศุภรัตน์",
     surname: "ศุภรัตน์",
     age: 55,
-    weight:47,
-    height:158,
-    qtySbp:118, 
-    qtyDpb:85,
-    pulse:77,
+    weight: 47,
+    height: 158,
+    qtySbp: 118,
+    qtyDpb: 85,
+    pulse: 77,
     tel: "0954626971",
   },
   {
@@ -89,11 +88,11 @@ const rows = [
     name: "สุรชัย",
     surname: "สุรชัย",
     age: 60,
-    weight:69,
-    height:173,
-    qtySbp:130, 
-    qtyDpb:70,
-    pulse:80,
+    weight: 69,
+    height: 173,
+    qtySbp: 130,
+    qtyDpb: 70,
+    pulse: 80,
     tel: "0809228314",
   },
   {
@@ -104,11 +103,11 @@ const rows = [
     name: "จารุวรรณ",
     surname: "จารุวรรณ",
     age: 79,
-    weight:83,
-    height:168,
-    qtySbp:122, 
-    qtyDpb:95,
-    pulse:84,
+    weight: 83,
+    height: 168,
+    qtySbp: 122,
+    qtyDpb: 95,
+    pulse: 84,
     tel: "0899107105",
   },
 ];
@@ -200,7 +199,7 @@ const columns = [
     field: "actions",
     headerName: "",
     width: 200,
-    align:"center",
+    align: "center",
     renderCell: (params) => (
       <div>
         <Stack direction="row" spacing={2}>
@@ -231,30 +230,47 @@ const handleEdit = (id) => {
 };
 
 const handleDelete = (id) => {
-  // เขียนโค้ดสำหรับการลบข้อมูลด้วย ID ที่ได้รับ
-  console.log("Delete clicked for row with ID:", id);
+  swal({
+    title: "ต้องการลบ?",
+    text: "ถ้าต้องการลบกด OK  ถ้าไม่ต้องการกด Cancle",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  }).then((willDelete) => {
+    if (willDelete) {
+      swal("ลบข้อมูลเสร็จสิ้น", {
+        icon: "success",
+      });
+    } else {
+      swal("ข้อมูลยังไม่ถูกลบ", {
+        icon: "success",
+      });
+    }
+  });
 };
 
 const DataStudents = () => {
   return (
-
     <Box>
       <Container>
-        <Typography  sx={{
+        <Typography
+          sx={{
             textAlign: "center",
             marginBottom: 3,
             marginTop: 10,
             fontSize: 25,
-          }}>
-            ตารางผู้ป่วย
+          }}
+        >
+          ตารางผู้ป่วย
         </Typography>
-        <DataGrid rows={rowsWithIndex} columns={columns} slots={{ toolbar: GridToolbarQuickFilter }}/>
-          <ForminputPatient/>
+        <DataGrid
+          rows={rowsWithIndex}
+          columns={columns}
+          slots={{ toolbar: GridToolbarQuickFilter }}
+        />
+        <ForminputPatient />
       </Container>
     </Box>
-
-
-
   );
 };
 

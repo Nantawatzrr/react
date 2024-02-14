@@ -231,8 +231,24 @@ const handleEdit = (id) => {
 };
 
 const handleDelete = (id) => {
-  // เขียนโค้ดสำหรับการลบข้อมูลด้วย ID ที่ได้รับ
-  console.log("Delete clicked for row with ID:", id);
+  swal({
+    title: "ต้องการลบ?",
+    text: "ถ้าต้องการลบกด OK  ถ้าไม่ต้องการกด Cancle",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      swal("ลบข้อมูลเสร็จสิ้น", {
+        icon: "success",
+      });
+    } else {
+      swal("ข้อมูลยังไม่ถูกลบ",{
+        icon: "success",
+      });
+    }
+  });
 };
 
 const DataStudents = () => {

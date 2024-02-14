@@ -153,6 +153,26 @@ const yesNo = [
   },
 ];
 
+const handleDelete = (id) => {
+  swal({
+    title: "ต้องการลบ?",
+    text: "ถ้าต้องการลบกด OK  ถ้าไม่ต้องการกด Cancle",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  }).then((willDelete) => {
+    if (willDelete) {
+      swal("ลบข้อมูลเสร็จสิ้น", {
+        icon: "success",
+      });
+    } else {
+      swal("ข้อมูลยังไม่ถูกลบ", {
+        icon: "success",
+      });
+    }
+  });
+};
+
 export default function AddressForm() {
   return (
     <React.Fragment>
@@ -361,6 +381,7 @@ export default function AddressForm() {
             type="submit"
             variant="contained"
             color="success"
+            onClick={() => handleDelete(params.row.id)}
             sx={{ backgroundColor: "#00CD66", marginBottom: 5, marginTop: 5 }}
           >
             เพิ่ม
