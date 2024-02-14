@@ -14,8 +14,8 @@ const DashboardCard = () => {
   ];
   return (
     <Box sx={{ display: "flex" , marginTop:18 }}>
-      <Grid container spacing={2} columns={16}>
-        <Grid item xs={8}>
+      <Grid container >
+        {/* <Grid item xs={8}>
           {userData.map((data, index) => (
             <Card variant="outlined" sx={cardStyle}>
               <Box
@@ -46,8 +46,8 @@ const DashboardCard = () => {
               </Box>
             </Card>
           ))}
-        </Grid>
-        <Grid item xs={8}>
+        </Grid> */}
+        <Grid item xs={12}>
           <Chart />
         </Grid>
       </Grid>

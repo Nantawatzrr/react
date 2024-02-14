@@ -1,86 +1,114 @@
-import { DataGrid, GridToolbarQuickFilter  } from "@mui/x-data-grid";
+import { DataGrid, GridToolbarQuickFilter } from "@mui/x-data-grid";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import ForminputEmp from "./ForminputEmp";
+import ForminputPatientDoctor from "./ForminputPatientDoctor";
 
 const rows = [
   {
     id: 1,
-    empCode: "65309010001",
-    branchId: "บางกอกใหญ่",
+    patientCode: "65309010001",
+    peopleCard: "1739902009000",
     title: "นาย",
     name: "กฤษณชัย",
     surname: "อุบลทิพย์",
-    username: "kritsanachai@gmail.com",
-    department: "SuperAdmin",
-    tel: "09876543321",
+    age: 59,
+    weight: 64,
+    height: 176,
+    qtySbp: 150,
+    qtyDpb: 95,
+    pulse: 84,
+    tel: "0987654332",
   },
   {
     id: 2,
-    empCode: "65309010002",
-    branchId: "ไทรน้อย",
+    patientCode: "65309010002",
+    peopleCard: "1739902009000",
     title: "นาย",
     name: "นันทวัฒน์",
     surname: "มาศวิเศษ",
-    username: "nantawat@gmail.com",
-    department: "BranchAdmin",
+    age: 60,
+    weight: 55,
+    height: 174,
+    qtySbp: 151,
+    qtyDpb: 85,
+    pulse: 79,
     tel: "0982079678",
   },
   {
     id: 3,
-    empCode: "65309010003",
-    branchId: "วงสว่างศ์",
+    patientCode: "65309010003",
+    peopleCard: "1739902009598",
     title: "นาย",
     name: "วิทยา",
     surname: "วิทยา",
-    username: "vitaya@gmail.com",
-    department: "Branch Staff",
-    tel: "09876543321",
+    age: 72,
+    weight: 71,
+    height: 162,
+    qtySbp: 110,
+    qtyDpb: 76,
+    pulse: 75,
+    tel: "0633368153",
   },
   {
     id: 4,
-    empCode: "65309010009",
-    branchId: "วงสว่างศ์",
+    patientCode: "65309010009",
+    peopleCard: "1739902009015",
     title: "นางสาว",
     name: "สุภาพร",
     surname: "สุภาพร",
-    username: "supaporn@gmail.com",
-    department: "Branch Staff",
-    tel: "09876543321",
+    age: 75,
+    weight: 68,
+    height: 168,
+    qtySbp: 125,
+    qtyDpb: 78,
+    pulse: 86,
+    tel: "0891685718",
   },
   {
     id: 5,
-    empCode: "65309010004",
-    branchId: "ไทรน้อย",
+    patientCode: "65309010004",
+    peopleCard: "1739902009758",
     title: "นางสาว",
     name: "ศุภรัตน์",
     surname: "ศุภรัตน์",
-    username: "suparuk@gmail.com",
-    department: "Doctor",
-    tel: "09876543321",
+    age: 55,
+    weight: 47,
+    height: 158,
+    qtySbp: 118,
+    qtyDpb: 85,
+    pulse: 77,
+    tel: "0954626971",
   },
   {
     id: 6,
-    empCode: "65309010005",
-    branchId: "ไทรน้อย",
+    patientCode: "65309010005",
+    peopleCard: "1739902009000",
     title: "นาย",
     name: "สุรชัย",
     surname: "สุรชัย",
-    username: "surachai@gmail.com",
-    department: "Nurse",
-    tel: "09876543321",
+    age: 60,
+    weight: 69,
+    height: 173,
+    qtySbp: 130,
+    qtyDpb: 70,
+    pulse: 80,
+    tel: "0809228314",
   },
   {
     id: 7,
-    empCode: "65309010006",
-    branchId: "บางกอกใหญ่",
+    patientCode: "65309010006",
+    peopleCard: "1739902009000",
     title: "นาง",
     name: "จารุวรรณ",
     surname: "จารุวรรณ",
-    username: "jaruwun@gmail.com",
-    department: "Nurse",
-    tel: "09876543321",
+    age: 79,
+    weight: 83,
+    height: 168,
+    qtySbp: 122,
+    qtyDpb: 95,
+    pulse: 84,
+    tel: "0899107105",
   },
 ];
 
@@ -90,18 +118,18 @@ const rowsWithIndex = rows.map((row, index) => ({ ...row, index: index + 1 }));
 const columns = [
   { field: "index", headerName: "#", width: 50 },
   {
-    field: "empCode",
-    headerName: "รหัสพนักงาน",
+    field: "patientCode",
+    headerName: "รหัสผู้ป่วย",
     flex: 2,
-    minWidth: 100,
-    maxWidth: 150,
+    minWidth: 120,
+    maxWidth: 200,
   },
   {
-    field: "branchId",
-    headerName: "สาขา",
+    field: "peopleCard",
+    headerName: "หมายเลขบัตรประชาชน",
     flex: 2,
-    minWidth: 70,
-    maxWidth: 100,
+    minWidth: 150,
+    maxWidth: 200,
   },
   {
     field: "title",
@@ -110,7 +138,7 @@ const columns = [
     minWidth: 70,
     maxWidth: 100,
   },
-  { field: "name", headerName: "ชื่อ", flex: 2, minWidth: 10, maxWidth: 200 },
+  { field: "name", headerName: "ชื่อ", flex: 2, minWidth: 100, maxWidth: 150 },
   {
     field: "surname",
     headerName: "นามสกุล",
@@ -119,11 +147,46 @@ const columns = [
     maxWidth: 150,
   },
   {
-    field: "username",
-    headerName: "ชื่อผู้ใช้งาน",
+    field: "age",
+    headerName: "อายุ",
     flex: 2,
-    minWidth: 120,
-    maxWidth: 200,
+    minWidth: 70,
+    maxWidth: 100,
+  },
+  {
+    field: "weight",
+    headerName: "น้ำหนัก",
+    flex: 2,
+    minWidth: 70,
+    maxWidth: 100,
+  },
+  {
+    field: "height",
+    headerName: "ส่วนสูง",
+    flex: 2,
+    minWidth: 70,
+    maxWidth: 100,
+  },
+  {
+    field: "qtySbp",
+    headerName: "SBP",
+    flex: 2,
+    minWidth: 70,
+    maxWidth: 100,
+  },
+  {
+    field: "qtyDpb",
+    headerName: "DPB",
+    flex: 2,
+    minWidth: 70,
+    maxWidth: 100,
+  },
+  {
+    field: "pulse",
+    headerName: "pulse",
+    flex: 2,
+    minWidth: 70,
+    maxWidth: 100,
   },
   {
     field: "tel",
@@ -133,16 +196,10 @@ const columns = [
     maxWidth: 220,
   },
   {
-    field: "department",
-    headerName: "ตำแหน่ง",
-    flex: 2,
-    minWidth: 100,
-    maxWidth: 200,
-  },
-  {
     field: "actions",
     headerName: "",
     width: 200,
+    align: "center",
     renderCell: (params) => (
       <div>
         <Stack direction="row" spacing={2}>
@@ -179,24 +236,26 @@ const handleDelete = (id) => {
 
 const DataStudents = () => {
   return (
-
     <Box>
       <Container>
-        <Typography  sx={{
+        <Typography
+          sx={{
             textAlign: "center",
             marginBottom: 3,
             marginTop: 10,
             fontSize: 25,
-          }}>
-            ตารางพนักงาน
+          }}
+        >
+          ตารางผู้ป่วย
         </Typography>
-        <DataGrid rows={rowsWithIndex} columns={columns} slots={{ toolbar: GridToolbarQuickFilter }}/>
-        <ForminputEmp/>
+        <DataGrid
+          rows={rowsWithIndex}
+          columns={columns}
+          slots={{ toolbar: GridToolbarQuickFilter }}
+        />
+        <ForminputPatientDoctor />
       </Container>
     </Box>
-
-
-
   );
 };
 

@@ -2,84 +2,84 @@ import { DataGrid, GridToolbarQuickFilter  } from "@mui/x-data-grid";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import InputEmp from './ForminputEmp'
+import ForminputEmp from './ForminputEmp'
 
 
 const rows = [
   {
     id: 1,
     empCode: "65309010001",
-    stuIdCard: "1739902009000",
+    branchId: "บางกอกใหญ่",
     title: "นาย",
     name: "กฤษณชัย",
     surname: "อุบลทิพย์",
-    username: "kritsanachai",
+    username: "kritsanachai@gmail.com",
     department: "SuperAdmin",
     tel: "09876543321",
   },
   {
     id: 2,
     empCode: "65309010002",
-    stuIdCard: "1739902009000",
+    branchId: "ไทรน้อย",
     title: "นาย",
     name: "นันทวัฒน์",
     surname: "มาศวิเศษ",
-    username: "nantawat",
+    username: "nantawat@gmail.com",
     department: "BranchAdmin",
     tel: "0982079678",
   },
   {
     id: 3,
     empCode: "65309010003",
-    stuIdCard: "1739902009598",
+    branchId: "วงสว่างศ์",
     title: "นาย",
     name: "วิทยา",
     surname: "วิทยา",
-    username: "vitaya",
+    username: "vitaya@gmail.com",
     department: "Branch Staff",
     tel: "09876543321",
   },
   {
     id: 4,
     empCode: "65309010009",
-    stuIdCard: "1739902009015",
+    branchId: "วงสว่างศ์",
     title: "นางสาว",
     name: "สุภาพร",
     surname: "สุภาพร",
-    username: "supaporn",
+    username: "supaporn@gmail.com",
     department: "Branch Staff",
     tel: "09876543321",
   },
   {
     id: 5,
     empCode: "65309010004",
-    stuIdCard: "1739902009758",
+    branchId: "ไทรน้อย",
     title: "นางสาว",
     name: "ศุภรัตน์",
     surname: "ศุภรัตน์",
-    username: "suparuk",
+    username: "suparuk@gmail.com",
     department: "Doctor",
     tel: "09876543321",
   },
   {
     id: 6,
     empCode: "65309010005",
-    stuIdCard: "1739902009000",
+    branchId: "ไทรน้อย",
     title: "นาย",
     name: "สุรชัย",
     surname: "สุรชัย",
-    username: "surachai",
+    username: "surachai@gmail.com",
     department: "Nurse",
     tel: "09876543321",
   },
   {
     id: 7,
     empCode: "65309010006",
-    stuIdCard: "1739902009000",
+    branchId: "บางกอกใหญ่",
     title: "นาง",
     name: "จารุวรรณ",
     surname: "จารุวรรณ",
-    username: "jaruwun",
+    username: "jaruwun@gmail.com",
     department: "Nurse",
     tel: "09876543321",
   },
@@ -98,11 +98,11 @@ const columns = [
     maxWidth: 150,
   },
   {
-    field: "stuIdCard",
-    headerName: "หมายเลขบัตรประชาชน",
+    field: "branchId",
+    headerName: "สาขา",
     flex: 2,
-    minWidth: 150,
-    maxWidth: 200,
+    minWidth: 70,
+    maxWidth: 100,
   },
   {
     field: "title",
@@ -111,7 +111,7 @@ const columns = [
     minWidth: 70,
     maxWidth: 100,
   },
-  { field: "name", headerName: "ชื่อ", flex: 2, minWidth: 100, maxWidth: 150 },
+  { field: "name", headerName: "ชื่อ", flex: 2, minWidth: 10, maxWidth: 200 },
   {
     field: "surname",
     headerName: "นามสกุล",
@@ -127,18 +127,18 @@ const columns = [
     maxWidth: 200,
   },
   {
-    field: "department",
-    headerName: "สิทธิ",
-    flex: 2,
-    minWidth: 100,
-    maxWidth: 200,
-  },
-  {
     field: "tel",
     headerName: "เบอร์โทร",
     flex: 2,
     minWidth: 120,
     maxWidth: 220,
+  },
+  {
+    field: "department",
+    headerName: "ตำแหน่ง",
+    flex: 2,
+    minWidth: 100,
+    maxWidth: 200,
   },
   {
     field: "actions",
@@ -192,7 +192,7 @@ const DataStudents = () => {
             ตารางพนักงาน
         </Typography>
         <DataGrid rows={rowsWithIndex} columns={columns} slots={{ toolbar: GridToolbarQuickFilter }}/>
-        <InputEmp/>
+        <ForminputEmp/>
       </Container>
     </Box>
 

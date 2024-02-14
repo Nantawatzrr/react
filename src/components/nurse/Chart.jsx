@@ -79,14 +79,14 @@ const Chart = () => {
                 clockWise={true}
                 dataKey="uv"
               />
-              {/* <Legend
+              <Legend
                 iconSize={10}
                 width={120}
                 height={140}
                 layout="vertical"
                 verticalAlign="middle"
                 align="right"
-              /> */}
+              />
               <Tooltip />
             </RadialBarChart>
           </ResponsiveContainer>

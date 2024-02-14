@@ -278,7 +278,7 @@ export default function MiniDrawer() {
         <Divider />
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-      {menudata == "Home" && <Home />}
+      {/* {menudata == "Home" && <Home />} */}
       
       </Box>
     </Box>

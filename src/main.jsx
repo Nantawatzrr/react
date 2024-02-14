@@ -2,10 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import Login from "./pages/Login.jsx";
 import Sidenav from "./pages/admin/Sidenav.jsx";
-import BranchAdminpage from "./pages/branchAdmin/branchAdminpage.jsx"
-import BranchStaff from './pages/branchStaff/BranchStaffpage.jsx'
-import Doctorpage from './pages/doctor/Doctorpage.jsx'
-import Nursepage from './pages/nurse/Nursepage.jsx'
+import BranchAdminpage from "./pages/branchAdmin/branchAdminpage.jsx";
+import BranchStaff from "./pages/branchStaff/BranchStaffpage.jsx";
+import Doctorpage from "./pages/doctor/Doctorpage.jsx";
+import Nursepage from "./pages/nurse/Nursepage.jsx";
+import FormReceivingService from "./components/superAdmin/FormReceivingService.jsx";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -17,6 +19,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Route path="/branchStaff" element={<BranchStaff />} />
       <Route path="/doctorpage" element={<Doctorpage />} />
       <Route path="/nursepage" element={<Nursepage />} />
+      <Route path="/FormReceivingService" element={<FormReceivingService />} />
+
     </Routes>
   </BrowserRouter>
 );

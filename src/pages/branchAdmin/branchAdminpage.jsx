@@ -21,10 +21,21 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import DataSaverOffOutlinedIcon from '@mui/icons-material/DataSaverOffOutlined';
 import logo from '../../icons/logo.png'
 import swal from "sweetalert";
+import MoreTimeIcon from '@mui/icons-material/MoreTime';
+import ArrowOutwardOutlinedIcon from '@mui/icons-material/ArrowOutwardOutlined';
 import Groups2SharpIcon from '@mui/icons-material/Groups2Sharp';
 import Home from '../../components/branchAdmin/Home'
+import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import Datapatient from '../../components/branchAdmin/Datapatient'
+import SaveAsIcon from '@mui/icons-material/SaveAs';
 import DataEmp from '../../components/branchAdmin/DataEmp'
+import DataUser from '../../components/branchAdmin/DataUser'
+import EditRoadIcon from '@mui/icons-material/EditRoad';
+import Keepingrecords from '../../components/branchAdmin/Keepingrecords';
+import Appointment from '../../components/branchAdmin/Appointment'
+import Fwservice from "../../components/branchAdmin/Fwservice";
+import FormReceiving from '../../components/branchAdmin/FormReceiving'
+
 
 const drawerWidth = 240;
 
@@ -255,6 +266,131 @@ export default function MiniDrawer() {
           <ListItem
             disablePadding
             sx={{ display: "block" }}
+            onClick={() => setMenudata("DataUser")}
+          >
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? "initial" : "center",
+                px: 2.5,
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 5 : "auto",
+                  justifyContent: "center",
+                }}
+              >
+                <PersonAddAltIcon />
+              </ListItemIcon>
+              <ListItemText primary="ผู้ใช้งาน" sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem
+            disablePadding
+            sx={{ display: "block" }}
+            onClick={() => setMenudata("FormReceivingService")}
+          >
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? "initial" : "center",
+                px: 2.5,
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 5 : "auto",
+                  justifyContent: "center",
+                }}
+              >
+                <EditRoadIcon/>
+              </ListItemIcon>
+              <ListItemText primary="ลงทะเบียนผู้รับบริการ" sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem
+            disablePadding
+            sx={{ display: "block" }}
+            onClick={() => setMenudata("Keepingrecords")}
+          >
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? "initial" : "center",
+                px: 2.5,
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 5 : "auto",
+                  justifyContent: "center",
+                }}
+              >
+                <SaveAsIcon/>
+              </ListItemIcon>
+              <ListItemText primary="บันทึกการรักษา" sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </ListItem>
+          
+          <ListItem
+            disablePadding
+            sx={{ display: "block" }}
+            onClick={() => setMenudata("Appointment")}
+          >
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? "initial" : "center",
+                px: 2.5,
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 5 : "auto",
+                  justifyContent: "center",
+                }}
+              >
+                <MoreTimeIcon/>
+              </ListItemIcon>
+              <ListItemText primary="บันทึกการนัดหมาย" sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem
+            disablePadding
+            sx={{ display: "block" }}
+            onClick={() => setMenudata("Fwservice")}
+          >
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? "initial" : "center",
+                px: 2.5,
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 5 : "auto",
+                  justifyContent: "center",
+                }}
+              >
+                <ArrowOutwardOutlinedIcon/>
+              </ListItemIcon>
+              <ListItemText primary="บันทึกการส่งต่อบริการ" sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem
+            disablePadding
+            sx={{ display: "block" }}
             onClick={handleLogout}
           >
             <ListItemButton
@@ -283,6 +419,11 @@ export default function MiniDrawer() {
       {menudata == "Home" && <Home />}
       {menudata == "Datapatient" && <Datapatient />}
       {menudata == "Empdata" && <DataEmp />}
+      {menudata == "DataUser" && <DataUser />}
+      {menudata == "FormReceivingService" && <FormReceiving />}
+      {menudata == "Appointment" && <Appointment />}
+      {menudata == "Fwservice" && <Fwservice />}
+      {menudata == "Keepingrecords" && <Keepingrecords />}
       </Box>
     </Box>
     </>

@@ -125,28 +125,34 @@
 
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import { Container } from '@mui/material';
 import Button from '@mui/material/Button';
 
-
-const title = [
+const role = [
   {
     value: '',
     label: '',
   },
   {
-    value: 'นาย',
-    label: 'นาย',
+    value: 'superAdmin',
+    label: 'Superadmin',
   },
   {
-    value: 'นาง',
-    label: 'นาง',
+    value: 'branchAdmin',
+    label: 'BranchAdmin',
   },
   {
-    value: 'นางสาว',
-    label: 'นางสาว',
+    value: 'branch Staff',
+    label: 'Branch Staff',
+  },
+  {
+    value: 'doctor',
+    label: 'Doctor',
+  },
+  {
+    value: 'nurse',
+    label: 'Nurse',
   },
 ];
 export default function AddressForm() {
@@ -157,10 +163,9 @@ export default function AddressForm() {
           <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <TextField
-            required
-            id="empCode"
-            name="empCode"
-            label="รหัสพนักงาน"
+            id="firstName"
+            name="firstName"
+            label="ชื่อจริง"
             fullWidth
             variant="standard"
           />
@@ -168,14 +173,24 @@ export default function AddressForm() {
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="branchId"
-            name="branchId"
-            label="สาขา"
+            id="lastName"
+            name="lastName"
+            label="นามสกุล"
             fullWidth
             variant="standard"
           />
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            id="username"
+            name="username"
+            label="ชื่อผู้ใช้งาน"
+            fullWidth
+            variant="standard"
+          />
+        </Grid>
+        
+        <Grid item xs={12} sm={6}>
         <TextField
           id="title"
           select
@@ -188,60 +203,12 @@ export default function AddressForm() {
           helperText="กรุณาเลือกคำนำหน้า"
           variant="standard"
         >
-          {title.map((option) => (
+          {role.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>
           ))}
         </TextField>
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <TextField
-            id="firstName"
-            name="firstName"
-            label="ชื่อจริง"
-            fullWidth
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <TextField
-            required
-            id="lastName"
-            name="lastName"
-            label="นามสกุล"
-            fullWidth
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <TextField
-            id="age"
-            name="age"
-            label="อายุ"
-            fullWidth
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <TextField
-            required
-            id="username"
-            name="username"
-            label="ผู้ใช้งาน"
-            fullWidth
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <TextField
-            required
-            id="tel"
-            name="tel"
-            label="เบอร์โทร"
-            fullWidth
-            variant="standard"
-          />
         </Grid>
       </Grid>
       <Button
@@ -251,6 +218,7 @@ export default function AddressForm() {
           sx={{ backgroundColor: "#00CD66", marginBottom: 5  , marginTop:5}}
         >
           เพิ่ม
+          {/* {editId ? "แก้ไข" : "เพิ่ม"} */}
         </Button>
         </form>
       
