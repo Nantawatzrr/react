@@ -24,7 +24,7 @@ export default function InputAdornments() {
             id="outlined-adornment-password"
             name='password'
             type={showPassword ? 'text' : 'password'} 
-
+            required
             endAdornment={
               <InputAdornment position="end">
                 <IconButton

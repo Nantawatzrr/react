@@ -22,13 +22,14 @@ import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
 import LogoutIcon from "@mui/icons-material/Logout";
 import DataSaverOffOutlinedIcon from "@mui/icons-material/DataSaverOffOutlined";
 import logo from "../../icons/logo.png";
-import swal from "sweetalert";
+
 import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import Groups2SharpIcon from "@mui/icons-material/Groups2Sharp";
 import DataTableadmin from "../../components/superAdmin/DataTableadmin";
 import DataUser from "../../components/superAdmin/DataUser";
-import Workrecord from '../../components/superAdmin/Workrecode'
-import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
+import Workrecord from "../../components/superAdmin/Workrecode";
+import DataSaverOnIcon from "@mui/icons-material/DataSaverOn";
+import Swal from 'sweetalert2';
 
 
 const drawerWidth = 240;
@@ -100,31 +101,19 @@ const Drawer = styled(MuiDrawer, {
 
 export default function MiniDrawer() {
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    fetch("http://localhost:3333/authen", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.status == "ok") {
-        } else {
-          swal({
-            title: "ไม่สามารถใช้งานได้",
-            text: "รบกวนเข้าสู่ระบบก่อน",
-            icon: "error",
-          }).then(() => {
-            localStorage.removeItem("token");
-            window.location = "/login";
-          });
-        }
-      })
-      .catch((error) => {
-        console.error("Error", error);
+    const tokenJWT = localStorage.getItem("token");
+    if (!tokenJWT) {
+      Swal.fire({
+        title: "ไม่สามารถใช้งานได้",
+        text: "กรุณาเข้าสู่ระบบก่อน",
+        width: 600,
+        padding: "3em",
+        color: "#FF6633",
+        icon: "error",
+      }).then(() => {
+        window.location = "/login";
       });
+    }
   });
 
   const theme = useTheme();

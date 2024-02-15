@@ -16,26 +16,25 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
-import LogoutIcon from '@mui/icons-material/Logout';
-import DataSaverOffOutlinedIcon from '@mui/icons-material/DataSaverOffOutlined';
-import logo from '../../icons/logo.png'
-import swal from "sweetalert";
-import MoreTimeIcon from '@mui/icons-material/MoreTime';
-import ArrowOutwardOutlinedIcon from '@mui/icons-material/ArrowOutwardOutlined';
-import Groups2SharpIcon from '@mui/icons-material/Groups2Sharp';
-import Home from '../../components/branchAdmin/Home'
-import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
-import Datapatient from '../../components/branchAdmin/Datapatient'
-import SaveAsIcon from '@mui/icons-material/SaveAs';
-import DataEmp from '../../components/branchAdmin/DataEmp'
-import DataUser from '../../components/branchAdmin/DataUser'
-import EditRoadIcon from '@mui/icons-material/EditRoad';
-import Keepingrecords from '../../components/branchAdmin/Keepingrecords';
-import Appointment from '../../components/branchAdmin/Appointment'
+import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
+import LogoutIcon from "@mui/icons-material/Logout";
+import DataSaverOffOutlinedIcon from "@mui/icons-material/DataSaverOffOutlined";
+import logo from "../../icons/logo.png";
+import MoreTimeIcon from "@mui/icons-material/MoreTime";
+import ArrowOutwardOutlinedIcon from "@mui/icons-material/ArrowOutwardOutlined";
+import Groups2SharpIcon from "@mui/icons-material/Groups2Sharp";
+import Home from "../../components/branchAdmin/Home";
+import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
+import Datapatient from "../../components/branchAdmin/Datapatient";
+import SaveAsIcon from "@mui/icons-material/SaveAs";
+import DataEmp from "../../components/branchAdmin/DataEmp";
+import DataUser from "../../components/branchAdmin/DataUser";
+import EditRoadIcon from "@mui/icons-material/EditRoad";
+import Keepingrecords from "../../components/branchAdmin/Keepingrecords";
+import Appointment from "../../components/branchAdmin/Appointment";
 import Fwservice from "../../components/branchAdmin/Fwservice";
-import FormReceiving from '../../components/branchAdmin/FormReceiving'
-
+import FormReceiving from "../../components/branchAdmin/FormReceiving";
+import Swal from 'sweetalert2';
 
 const drawerWidth = 240;
 
@@ -106,37 +105,25 @@ const Drawer = styled(MuiDrawer, {
 
 export default function MiniDrawer() {
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    fetch("http://localhost:3333/authen", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.status == "ok") {
-        } else {
-          swal({
-            title: "ไม่สามารถใช้งานได้",
-            text: "รบกวนเข้าสู่ระบบก่อน",
-            icon: "error",
-          }).then(()=>{
-            localStorage.removeItem("token");
-            window.location = "/login";
-          })
-        }
-      })
-      .catch((error) => {
-        console.error("Error", error);
+    const tokenJWT = localStorage.getItem("token");
+    if (!tokenJWT) {
+      Swal.fire({
+        title: "ไม่สามารถใช้งานได้",
+        text: "กรุณาเข้าสู่ระบบก่อน",
+        width: 600,
+        padding: "3em",
+        color: "#FF6633",
+        icon: "error",
+      }).then(() => {
+        window.location = "/login";
       });
+    }
   });
 
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [menudata, setMenudata] = useState("Home");
-  
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -151,282 +138,306 @@ export default function MiniDrawer() {
     window.location = "/login";
   };
 
-
   return (
     <>
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      <AppBar position="fixed" sx={{backgroundColor:'white',color:'black'}}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={()=>{setOpen(!open)}}
-            edge="start"
-            sx={{
-              marginRight: 2.5,
-              ...(open && { display: "flex" }),
-            }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <img src={logo} height={50} width={50}/>
-          <Typography variant="h6" noWrap component="div" marginLeft={3}>
-            Elderlycare Server
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer variant="permanent" open={open}>
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "rtl" ? (
-              <ChevronRightIcon />
-            ) : (
-              <ChevronLeftIcon />
-            )}
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        <List>
-          <ListItem
-            disablePadding
-            sx={{ display: "block" }}
-            onClick={() => setMenudata("Home")}
-          >
-            <ListItemButton
+      <Box sx={{ display: "flex" }}>
+        <CssBaseline />
+        <AppBar
+          position="fixed"
+          sx={{ backgroundColor: "white", color: "black" }}
+        >
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={() => {
+                setOpen(!open);
+              }}
+              edge="start"
               sx={{
-                minHeight: 48,
-                justifyContent: open ? "initial" : "center",
-                px: 2.5,
+                marginRight: 2.5,
+                ...(open && { display: "flex" }),
               }}
             >
-              <ListItemIcon
+              <MenuIcon />
+            </IconButton>
+            <img src={logo} height={50} width={50} />
+            <Typography variant="h6" noWrap component="div" marginLeft={3}>
+              Elderlycare Server
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Drawer variant="permanent" open={open}>
+          <DrawerHeader>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === "rtl" ? (
+                <ChevronRightIcon />
+              ) : (
+                <ChevronLeftIcon />
+              )}
+            </IconButton>
+          </DrawerHeader>
+          <Divider />
+          <List>
+            <ListItem
+              disablePadding
+              sx={{ display: "block" }}
+              onClick={() => setMenudata("Home")}
+            >
+              <ListItemButton
                 sx={{
-                  minWidth: 0,
-                  mr: open ? 5 : "auto",
-                  justifyContent: "center",
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
                 }}
               >
-                <DashboardOutlinedIcon />
-              </ListItemIcon>
-              <ListItemText primary="Home" sx={{ opacity: open ? 1 : 0 }} />
-            </ListItemButton>
-          </ListItem>
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 5 : "auto",
+                    justifyContent: "center",
+                  }}
+                >
+                  <DashboardOutlinedIcon />
+                </ListItemIcon>
+                <ListItemText primary="Home" sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
 
-          <ListItem
-            disablePadding
-            sx={{ display: "block" }}
-            onClick={() => setMenudata("Datapatient")}
-          >
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? "initial" : "center",
-                px: 2.5,
-              }}
+            <ListItem
+              disablePadding
+              sx={{ display: "block" }}
+              onClick={() => setMenudata("Datapatient")}
             >
-              <ListItemIcon
+              <ListItemButton
                 sx={{
-                  minWidth: 0,
-                  mr: open ? 5 : "auto",
-                  justifyContent: "center",
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
                 }}
               >
-                <DataSaverOffOutlinedIcon />
-              </ListItemIcon>
-              <ListItemText primary="ตารางผู้ป่วย" sx={{ opacity: open ? 1 : 0 }} />
-            </ListItemButton>
-          </ListItem>
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 5 : "auto",
+                    justifyContent: "center",
+                  }}
+                >
+                  <DataSaverOffOutlinedIcon />
+                </ListItemIcon>
+                <ListItemText
+                  primary="ตารางผู้ป่วย"
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
+              </ListItemButton>
+            </ListItem>
 
-          <ListItem
-            disablePadding
-            sx={{ display: "block" }}
-            onClick={() => setMenudata("Empdata")}
-          >
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? "initial" : "center",
-                px: 2.5,
-              }}
+            <ListItem
+              disablePadding
+              sx={{ display: "block" }}
+              onClick={() => setMenudata("Empdata")}
             >
-              <ListItemIcon
+              <ListItemButton
                 sx={{
-                  minWidth: 0,
-                  mr: open ? 5 : "auto",
-                  justifyContent: "center",
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
                 }}
               >
-                <Groups2SharpIcon />
-              </ListItemIcon>
-              <ListItemText primary="พนักงาน" sx={{ opacity: open ? 1 : 0 }} />
-            </ListItemButton>
-          </ListItem>
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 5 : "auto",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Groups2SharpIcon />
+                </ListItemIcon>
+                <ListItemText
+                  primary="พนักงาน"
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
+              </ListItemButton>
+            </ListItem>
 
-          <ListItem
-            disablePadding
-            sx={{ display: "block" }}
-            onClick={() => setMenudata("DataUser")}
-          >
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? "initial" : "center",
-                px: 2.5,
-              }}
+            <ListItem
+              disablePadding
+              sx={{ display: "block" }}
+              onClick={() => setMenudata("DataUser")}
             >
-              <ListItemIcon
+              <ListItemButton
                 sx={{
-                  minWidth: 0,
-                  mr: open ? 5 : "auto",
-                  justifyContent: "center",
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
                 }}
               >
-                <PersonAddAltIcon />
-              </ListItemIcon>
-              <ListItemText primary="ผู้ใช้งาน" sx={{ opacity: open ? 1 : 0 }} />
-            </ListItemButton>
-          </ListItem>
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 5 : "auto",
+                    justifyContent: "center",
+                  }}
+                >
+                  <PersonAddAltIcon />
+                </ListItemIcon>
+                <ListItemText
+                  primary="ผู้ใช้งาน"
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
+              </ListItemButton>
+            </ListItem>
 
-          <ListItem
-            disablePadding
-            sx={{ display: "block" }}
-            onClick={() => setMenudata("FormReceivingService")}
-          >
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? "initial" : "center",
-                px: 2.5,
-              }}
+            <ListItem
+              disablePadding
+              sx={{ display: "block" }}
+              onClick={() => setMenudata("FormReceivingService")}
             >
-              <ListItemIcon
+              <ListItemButton
                 sx={{
-                  minWidth: 0,
-                  mr: open ? 5 : "auto",
-                  justifyContent: "center",
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
                 }}
               >
-                <EditRoadIcon/>
-              </ListItemIcon>
-              <ListItemText primary="ลงทะเบียนผู้รับบริการ" sx={{ opacity: open ? 1 : 0 }} />
-            </ListItemButton>
-          </ListItem>
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 5 : "auto",
+                    justifyContent: "center",
+                  }}
+                >
+                  <EditRoadIcon />
+                </ListItemIcon>
+                <ListItemText
+                  primary="ลงทะเบียนผู้รับบริการ"
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
+              </ListItemButton>
+            </ListItem>
 
-          <ListItem
-            disablePadding
-            sx={{ display: "block" }}
-            onClick={() => setMenudata("Keepingrecords")}
-          >
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? "initial" : "center",
-                px: 2.5,
-              }}
+            <ListItem
+              disablePadding
+              sx={{ display: "block" }}
+              onClick={() => setMenudata("Keepingrecords")}
             >
-              <ListItemIcon
+              <ListItemButton
                 sx={{
-                  minWidth: 0,
-                  mr: open ? 5 : "auto",
-                  justifyContent: "center",
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
                 }}
               >
-                <SaveAsIcon/>
-              </ListItemIcon>
-              <ListItemText primary="บันทึกการรักษา" sx={{ opacity: open ? 1 : 0 }} />
-            </ListItemButton>
-          </ListItem>
-          
-          <ListItem
-            disablePadding
-            sx={{ display: "block" }}
-            onClick={() => setMenudata("Appointment")}
-          >
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? "initial" : "center",
-                px: 2.5,
-              }}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: open ? 5 : "auto",
-                  justifyContent: "center",
-                }}
-              >
-                <MoreTimeIcon/>
-              </ListItemIcon>
-              <ListItemText primary="บันทึกการนัดหมาย" sx={{ opacity: open ? 1 : 0 }} />
-            </ListItemButton>
-          </ListItem>
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 5 : "auto",
+                    justifyContent: "center",
+                  }}
+                >
+                  <SaveAsIcon />
+                </ListItemIcon>
+                <ListItemText
+                  primary="บันทึกการรักษา"
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
+              </ListItemButton>
+            </ListItem>
 
-          <ListItem
-            disablePadding
-            sx={{ display: "block" }}
-            onClick={() => setMenudata("Fwservice")}
-          >
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? "initial" : "center",
-                px: 2.5,
-              }}
+            <ListItem
+              disablePadding
+              sx={{ display: "block" }}
+              onClick={() => setMenudata("Appointment")}
             >
-              <ListItemIcon
+              <ListItemButton
                 sx={{
-                  minWidth: 0,
-                  mr: open ? 5 : "auto",
-                  justifyContent: "center",
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
                 }}
               >
-                <ArrowOutwardOutlinedIcon/>
-              </ListItemIcon>
-              <ListItemText primary="บันทึกการส่งต่อบริการ" sx={{ opacity: open ? 1 : 0 }} />
-            </ListItemButton>
-          </ListItem>
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 5 : "auto",
+                    justifyContent: "center",
+                  }}
+                >
+                  <MoreTimeIcon />
+                </ListItemIcon>
+                <ListItemText
+                  primary="บันทึกการนัดหมาย"
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
+              </ListItemButton>
+            </ListItem>
 
-          <ListItem
-            disablePadding
-            sx={{ display: "block" }}
-            onClick={handleLogout}
-          >
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? "initial" : "center",
-                px: 2.5,
-              }}
+            <ListItem
+              disablePadding
+              sx={{ display: "block" }}
+              onClick={() => setMenudata("Fwservice")}
             >
-              <ListItemIcon
+              <ListItemButton
                 sx={{
-                  minWidth: 0,
-                  mr: open ? 5 : "auto",
-                  justifyContent: "center",
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
                 }}
               >
-                <LogoutIcon />
-              </ListItemIcon>
-              <ListItemText primary="Logout" sx={{ opacity: open ? 1 : 0 }} />
-            </ListItemButton>
-          </ListItem>
-        </List>
-        <Divider />
-      </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-      {menudata == "Home" && <Home />}
-      {menudata == "Datapatient" && <Datapatient />}
-      {menudata == "Empdata" && <DataEmp />}
-      {menudata == "DataUser" && <DataUser />}
-      {menudata == "FormReceivingService" && <FormReceiving />}
-      {menudata == "Appointment" && <Appointment />}
-      {menudata == "Fwservice" && <Fwservice />}
-      {menudata == "Keepingrecords" && <Keepingrecords />}
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 5 : "auto",
+                    justifyContent: "center",
+                  }}
+                >
+                  <ArrowOutwardOutlinedIcon />
+                </ListItemIcon>
+                <ListItemText
+                  primary="บันทึกการส่งต่อบริการ"
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
+              </ListItemButton>
+            </ListItem>
+
+            <ListItem
+              disablePadding
+              sx={{ display: "block" }}
+              onClick={handleLogout}
+            >
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 5 : "auto",
+                    justifyContent: "center",
+                  }}
+                >
+                  <LogoutIcon />
+                </ListItemIcon>
+                <ListItemText primary="Logout" sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+          </List>
+          <Divider />
+        </Drawer>
+        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+          {menudata == "Home" && <Home />}
+          {menudata == "Datapatient" && <Datapatient />}
+          {menudata == "Empdata" && <DataEmp />}
+          {menudata == "DataUser" && <DataUser />}
+          {menudata == "FormReceivingService" && <FormReceiving />}
+          {menudata == "Appointment" && <Appointment />}
+          {menudata == "Fwservice" && <Fwservice />}
+          {menudata == "Keepingrecords" && <Keepingrecords />}
+        </Box>
       </Box>
-    </Box>
     </>
-    
   );
 }

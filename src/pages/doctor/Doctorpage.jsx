@@ -32,7 +32,7 @@ import FwDoctor from '../../components/doctor/FwDoctor'
 import FormReceivingDoctor from '../../components/doctor/FormReceivingDoctor'
 import Home from "../../components/doctor/Home";
 import logo from "../../icons/logo.png";
-import swal from "sweetalert";
+import Swal from 'sweetalert2';
 
 const drawerWidth = 240;
 
@@ -103,31 +103,19 @@ const Drawer = styled(MuiDrawer, {
 
 export default function MiniDrawer() {
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    fetch("http://localhost:3333/authen", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.status == "ok") {
-        } else {
-          swal({
-            title: "ไม่สามารถใช้งานได้",
-            text: "รบกวนเข้าสู่ระบบก่อน",
-            icon: "error",
-          }).then(() => {
-            localStorage.removeItem("token");
-            window.location = "/login";
-          });
-        }
-      })
-      .catch((error) => {
-        console.error("Error", error);
+    const tokenJWT = localStorage.getItem("token");
+    if (!tokenJWT) {
+      Swal.fire({
+        title: "ไม่สามารถใช้งานได้",
+        text: "กรุณาเข้าสู่ระบบก่อน",
+        width: 600,
+        padding: "3em",
+        color: "#FF6633",
+        icon: "error",
+      }).then(() => {
+        window.location = "/login";
       });
+    }
   });
 
   const theme = useTheme();

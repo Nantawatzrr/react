@@ -20,7 +20,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Route path="/doctorpage" element={<Doctorpage />} />
       <Route path="/nursepage" element={<Nursepage />} />
       <Route path="/FormReceivingService" element={<FormReceivingService />} />
-
     </Routes>
   </BrowserRouter>
 );
